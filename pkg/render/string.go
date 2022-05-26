@@ -2,9 +2,9 @@ package render
 
 import (
 	"fmt"
+	"github.com/vlorc/restful/pkg/web"
 	"io"
 	"net/http"
-	"github.com/vlorc/restful/pkg/web"
 )
 
 type STRING struct {

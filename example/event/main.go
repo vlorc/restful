@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
-	"log"
-	"net/http"
 	"github.com/vlorc/restful/pkg/engine"
+	_ "github.com/vlorc/restful/pkg/engine/chi"
 	"github.com/vlorc/restful/pkg/render"
 	"github.com/vlorc/restful/pkg/web"
+	"log"
+	"net/http"
 	"time"
 )
 
@@ -34,9 +35,7 @@ if(typeof(EventSource) !== "undefined") {
 `)
 
 func main() {
-	engine.Init()
-
-	g := engine.NewRouter()
+	g := engine.Default()
 
 	q := make(chan string)
 

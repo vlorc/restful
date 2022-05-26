@@ -1,16 +1,20 @@
-package engine
+package chi
 
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"io/fs"
-	"net/http"
+	"github.com/vlorc/restful/pkg/engine"
+	"github.com/vlorc/restful/pkg/engine/core"
 	"github.com/vlorc/restful/pkg/middle"
 	"github.com/vlorc/restful/pkg/router"
 	"github.com/vlorc/restful/pkg/web"
 	"github.com/vlorc/restful/pkg/wrap"
+	"io/fs"
+	"net/http"
 	"sync/atomic"
 )
+
+const CHI_NAME = "chi"
 
 type Router struct {
 	router   chi.Router
@@ -22,6 +26,17 @@ type Router struct {
 }
 
 var _ router.Router = &Router{}
+
+func init() {
+	engine.Register(engine.DETAULT_NAME, func(middles ...func(http.Handler) http.Handler) router.Router {
+		core.Setup(chi.RouteCtxKey)
+		return NewRouter(middles...)
+	})
+	engine.Register(CHI_NAME, func(middles ...func(http.Handler) http.Handler) router.Router {
+		core.Setup(chi.RouteCtxKey)
+		return NewRouter(middles...)
+	})
+}
 
 func NewRouter(middles ...func(http.Handler) http.Handler) router.Router {
 	r := &Router{

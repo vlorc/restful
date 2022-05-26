@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"github.com/vlorc/restful/pkg/engine"
+	_ "github.com/vlorc/restful/pkg/engine/chi"
 	"log"
 	"net/http"
 )
@@ -16,9 +17,8 @@ type EchoResponse struct {
 }
 
 func main() {
-	engine.Init()
 
-	g := engine.NewRouter()
+	g := engine.Default()
 
 	g.Any("/echo", func(req *EchoRequest) (*EchoResponse, error) {
 		log.Println("body: ", req.Data)

@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
+	"github.com/vlorc/restful/pkg/web"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"net/url"
-	"github.com/vlorc/restful/pkg/web"
 	"reflect"
 	"strconv"
 )

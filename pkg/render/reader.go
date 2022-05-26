@@ -1,9 +1,9 @@
 package render
 
 import (
+	"github.com/vlorc/restful/pkg/web"
 	"io"
 	"net/http"
-	"github.com/vlorc/restful/pkg/web"
 	"strconv"
 )
 
